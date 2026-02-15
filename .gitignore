@@ -1,0 +1,46 @@
+# Generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+
+# Cache & crash
+MemoryCaptures/
+sysinfo.txt
+
+# IDE files
+.vs/
+.idea/
+.vscode/
+
+# C# / Solution files
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.tmp
+*.opendb
+*.mdb
+*.pdb
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Builds / exports
+*.apk
+*.aab
+*.exe
+*.app
+*.ipa
+
+# Logs
+*.log
+*.bak
+*.swp
