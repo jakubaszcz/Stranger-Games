@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-public class GameSignals : MonoBehaviour
+public static class GameSignals
 {
-    public static Action OnCoin;
-    public static Action OnGameOver;
+    public static Action OnCoinPicked;
+    public static Action<int> OnCoinsChanged;
 }
