@@ -8,7 +8,7 @@ public class CoinCollision : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // Invoke OnCoin signal
-            GameSignals.OnCoin?.Invoke();
+            GameSignals.OnCoinPicked?.Invoke();
             
             // Then destroys the coin
             Destroy(gameObject);
