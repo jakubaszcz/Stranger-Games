@@ -6,7 +6,7 @@ public class HunterBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log(collision.gameObject.name);
+            GameSignals.OnGameOver?.Invoke(Condition.Lose);
         }
     }
 }

@@ -121,6 +121,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3161669804345549263}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eab6cac1a1beb245be0d0f7acbac69a, type: 3}
+  m_Script: {fileID: 11500000, guid: f68406f277befb5c59468b078681d889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinCollision

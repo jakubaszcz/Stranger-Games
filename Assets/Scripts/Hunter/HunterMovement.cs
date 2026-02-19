@@ -6,8 +6,11 @@ public class HunterMovement : MonoBehaviour
     private NavMeshAgent agent;
     public Transform target;
 
+    private float patrolSpeed = 1f;
+    private float chaseSpeed = 14f;
+
     private float detectionRadius = 15f;
-    private float patrolRadius = 20f;
+    private float patrolRadius = 30f;
     private float patrolIdleTime = 2f;
 
     private bool isPatroling = false;
@@ -57,6 +60,7 @@ public class HunterMovement : MonoBehaviour
 
     private void Patrol()
     {
+        agent.speed = patrolSpeed;
         if (isIdle)
         {
             idleTimer += Time.deltaTime;
@@ -79,6 +83,8 @@ public class HunterMovement : MonoBehaviour
     {
         if (target == null) return;
         if (!agent.isOnNavMesh) return;
+        
+        agent.speed = chaseSpeed;
         
         isIdle = false;
         isPatroling = false;
