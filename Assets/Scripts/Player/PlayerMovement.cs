@@ -4,11 +4,14 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     // Player chars
-    [SerializeField] private float p_Speed = 10f;
     [SerializeField] private float p_JumpForce = 10f;
-    [SerializeField] private float p_Sensitivity = 3f;
+    [SerializeField] private float p_Sensitivity = 0.3f;
     [SerializeField] private float p_XRotation = 0f;
-    
+
+    [SerializeField] private float walkSpeed = 5f;
+    [SerializeField] private float runSpeed = 10f;
+    private bool isSprinting;
+
     // References
     [SerializeField] private Transform p_cameraTransform;
     
@@ -44,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovementUpdate()
     {
+        float speed = isSprinting ? runSpeed : walkSpeed;
         // Previous code was about the world space coordinates
         // Now we use the camera space coordinates
         Vector3 forward = p_cameraTransform.forward;
@@ -56,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
         
         Vector3 dir = forward * p_MoveInput.y + right * p_MoveInput.x;
         
-        Vector3 velocity = dir * p_Speed;
+        Vector3 velocity = dir * speed;
         velocity.y = p_Rigidbody.linearVelocity.y;
         
         p_Rigidbody.linearVelocity = velocity;
@@ -75,6 +79,10 @@ public class PlayerMovement : MonoBehaviour
         p_Actions.Player.Move.performed += OnMove;
         p_Actions.Player.Move.canceled += OnMove;
         
+        // Run
+        p_Actions.Player.Sprint.performed += OnSprint;
+        p_Actions.Player.Sprint.canceled += OnSprint;
+        
         // Jump
         p_Actions.Player.Jump.performed += OnJump;
         
@@ -88,6 +96,11 @@ public class PlayerMovement : MonoBehaviour
         p_Actions.Player.Move.performed -= OnMove;
         p_Actions.Player.Move.canceled -= OnMove;
         
+        // Sprint
+        p_Actions.Player.Sprint.performed -= OnSprint;
+        p_Actions.Player.Sprint.canceled -= OnSprint;
+        
+        
         // Jump
         p_Actions.Player.Jump.performed -= OnJump;
         
@@ -100,6 +113,11 @@ public class PlayerMovement : MonoBehaviour
     private void OnMove(InputAction.CallbackContext ctx)
     {
         p_MoveInput = ctx.ReadValue<Vector2>();
+    }
+    
+    private void OnSprint(InputAction.CallbackContext ctx)
+    {
+        isSprinting = ctx.ReadValueAsButton();
     }
 
     private void OnJump(InputAction.CallbackContext ctx)
